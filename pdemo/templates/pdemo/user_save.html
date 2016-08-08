@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+</html>
+<head>
+    <title>报名情况统计</title>
+    <link rel="stylesheet"
+          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<p style="text-align:center;font-size:1.5em;">nn</p>
+<form action="" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <div class="container-fluid col-lg-6 col-sm-offset-3">
+            <legend>dajiahao</legend>
+
+            {% for field in form %}
+                <div class="row-fluid">
+                    <div class="col-lg-6"
+                         style="text-align: right;">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ field }}
+                        {{ field.errors }}
+                        {{ error }}
+                    </div>
+                </div>
+            {% endfor %}
+            {#        {{ form.as_table }}#}
+            <input type="submit" value="submit"
+                   class="col-sm-offset-6 btn btn-primary btn-primary"/>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

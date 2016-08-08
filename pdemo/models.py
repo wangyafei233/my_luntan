@@ -6,6 +6,13 @@ from django.utils.translation import ugettext as _
 from django.db import models
 
 
+class PublicModel(models.Model):
+    start_time = models.DateField(help_text='输入有误')
+
+    class Meta:
+        abstract = True
+
+
 class MessageForm(forms.Form):
     text_input = forms.CharField()
     textarea = forms.CharField(
@@ -67,7 +74,7 @@ class MessageForm(forms.Form):
     )
 
 
-class Report(forms.Form):
-    name = models.CharField(_('Name'), max_length=255, unique=True)
-    label = models.CharField(_('Label'), max_length=255)
-    order = models.IntegerField(default=0)
+class Report(PublicModel):
+    name = models.CharField(_('Name'), max_length=255, unique=True, blank=True,)
+    label = models.CharField(_('Label'), max_length=255, blank=True)
+    order = models.IntegerField(default=0, )

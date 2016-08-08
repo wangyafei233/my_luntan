@@ -6,8 +6,9 @@ from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div, \
     ButtonHolder, HTML, Reset, Button
 from django import forms
 from django.core.urlresolvers import reverse
+from django.forms import TimeField, IntegerField, Textarea
 from django.utils.translation import ugettext as _
-from mydemo.pdemo.models import Report
+from .models import Report
 
 
 class ExampleForm(forms.Form):
@@ -79,25 +80,36 @@ class ExampleForm(forms.Form):
         )
 
 
-class ServerForm(forms.Form):
-    user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
-                           widget=forms.TextInput(attrs={'size': 20,}))
-    ip = forms.IPAddressField(label=_(u"IP地址"), max_length=20, required=True,
-                              widget=forms.TextInput(attrs={'size': 20,}))
-    port = forms.IntegerField(label=_(u"通信端口"), required=True,
-                              widget=forms.TextInput(attrs={'size': 20,}))
-    cpunum = forms.IntegerField(label=_(u"CPU个数"), required=True,
-                                widget=forms.TextInput(attrs={'size': 20,}))
-    mem = forms.IntegerField(label=_(u"内存"), required=True,
-                             widget=forms.TextInput(attrs={'size': 20,}))
-    state = forms.CharField(label=_(u"状态"), max_length=30, required=True,
-                            widget=forms.TextInput(attrs={'size': 20,}))
+# class ServerForm(forms.Form):
+#     user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
+#                            widget=forms.TextInput(attrs={'size': 20,}))
+#     ip = forms.IntegerField(label=_(u"IP地址"), max_length=20, required=True,
+#                               widget=forms.TextInput(attrs={'size': 20,}))
+#     port = forms.IntegerField(label=_(u"通信端口"), required=True,
+#                               widget=forms.TextInput(attrs={'size': 20,}))
+#     cpunum = forms.IntegerField(label=_(u"CPU个数"), required=True,
+#                                 widget=forms.TextInput(attrs={'size': 20,}))
+#     mem = forms.IntegerField(label=_(u"内存"), required=True,
+#                              widget=forms.TextInput(attrs={'size': 20,}))
+#     state = forms.CharField(label=_(u"状态"), max_length=30, required=True,
+#                             widget=forms.TextInput(attrs={'size': 20,}))
 
 
 class User(forms.ModelForm):
     class Meta:
         model = Report
-        fields = ('name', 'label', 'order')
-        widget = {
-            'name': {},
-        }
+        fields = '__all__'
+        widget = forms.SelectMultiple(attrs={
+            'class': 'form-control input-sm v-hidden',
+            'data-toggle': 'query-select2',
+            'multiple': 'multiple'
+        })
+
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if name == '':
+            raise forms.ValidationError("价格必须大于零")
+        return name
