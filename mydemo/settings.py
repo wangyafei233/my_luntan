@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+    'authtools',
 
     'pdemo',
 
@@ -120,3 +121,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+AUTH_USER_MODEL = 'authtools.User'
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/'
+
+# AUTHENTICATION_BACKENDS = [
+#     'authtools.backends.CaseInsensitiveUsernameFieldModelBackend',
+# ]
