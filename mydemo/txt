@@ -1,0 +1,16 @@
+上面问题表的表
+QuestionID int 自动增长 --ID
+QuestionAuthor varchar(20) --作者
+QuestionTime datatime 默认值getdate() --时间
+QuestionTitle varchar(100) --标题
+QuestionBody varchar(1000) --问题
+QuestionNum int --浏览次数
+QuestionScore int --分数
+QuestionSupply varchar(200) --问题补充
+
+回答的
+AnswerID int 自动增长 --ID
+AnswerAuthor varchar(20) --回答作者
+AnswerTime datatime 默认值getdate() --回答时间
+AnswerBody varchar(10000) --回答答案
+QuestionID int --问题ID 跟 上面的外键

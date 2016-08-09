@@ -4,15 +4,28 @@
 <head>
     <link rel="stylesheet"
           href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-{#    <link rel="stylesheet"#}
-{#          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">#}
-{#    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>#}
-{#    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
+    {#    <link rel="stylesheet"#}
+    {#          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">#}
+    {#    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>#}
+    {#    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
     <title></title>
 </head>
 <body>
 <div style="width: 1500px;height: 100%;margin-left: auto;margin-right: auto;padding-left: 50px;">
-    {% crispy form %}
+
+{#    <form method='POST' id="id-exampleForm" class="form-horizontal">#}
+{#    {% csrf_token %}#}
+{#        {% for field in form %}#}
+{#            <div class='fieldWrapper'>#}
+{#                {{ field.label_tag }}:{{ field }}#}
+{#                {{ field.errors }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#        <p><input type='submit' value='留言'></p>#}
+{#    </form>#}
+
+
+        {% crispy form %}
 </div>
 
 <div class="container-fluid">

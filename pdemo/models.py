@@ -7,7 +7,7 @@ from django.db import models
 
 
 class PublicModel(models.Model):
-    start_time = models.DateField(help_text='输入有误')
+    start_time = models.DateField()
 
     class Meta:
         abstract = True
@@ -75,6 +75,38 @@ class MessageForm(forms.Form):
 
 
 class Report(PublicModel):
-    name = models.CharField(_('Name'), max_length=255, unique=True, blank=True,)
+    name = models.CharField(_('Name'), max_length=255, unique=True,
+                            blank=True, )
     label = models.CharField(_('Label'), max_length=255, blank=True)
     order = models.IntegerField(default=0, )
+
+
+class Bbs(models.Model):
+    QuestionTime = models.DateTimeField(_('QuestionTime'), auto_now=True,
+                                        blank=True)
+    QuestionAuthor = models.CharField(_('QuestionAuthor'), max_length=255,
+                                      unique=True, blank=True, )
+    QuestionTitle = models.CharField(_('QuestionTitle'), max_length=255,
+                                     blank=True, unique=True)
+    QuestionSupply = models.CharField(_('QuestionSupply'), max_length=1000, )
+    QuestionBody = models.TextField(_('QuestionBody'), max_length=2000, )
+
+    def __unicode__(self):
+        return self.QuestionTitle
+
+    class Meta:
+        ordering = ['QuestionTime']
+
+
+class Comment(models.Model):
+    Question = models.ForeignKey(Bbs, null=True)
+    AnswerAuthor = models.CharField(_(''), max_length=255, unique=True,
+                                    blank=True, )
+    AnswerTime = models.DateTimeField()
+    AnswerBody = models.CharField(max_length=1000, )
+
+    def __unicode__(self):
+        return self.AnswerAuthor
+
+    class Meta:
+        ordering = ['AnswerTime']

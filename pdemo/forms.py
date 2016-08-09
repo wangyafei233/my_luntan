@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+from datetime import datetime
+
 from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div, \
@@ -8,43 +10,41 @@ from django import forms
 from django.core.urlresolvers import reverse
 from django.forms import TimeField, IntegerField, Textarea
 from django.utils.translation import ugettext as _
-from .models import Report
+from .models import Report, Bbs
 
 
 class ExampleForm(forms.Form):
-    like_website = forms.TypedChoiceField(
-        label="Do you like this website?",
-        choices=((1, "Yes"), (0, "No")),
-        coerce=lambda x: bool(int(x)),
-        widget=forms.RadioSelect,
-        initial='1',
-        required=True,
-    )
-
-    favorite_food = forms.CharField(
-        label="What is your favorite food?",
-        max_length=80,
-        required=True,
-    )
-
-    favorite_color = forms.CharField(
-        label="What is your favorite color?",
-        max_length=80,
-        required=True,
-    )
-
-    favorite_number = forms.IntegerField(
-        label="Favorite number",
+    QuestionTime = forms.DateTimeField(
+        label="QuestionTime",
         required=False,
+        initial=datetime.today()
     )
 
-    notes = forms.CharField(
-        label="Additional notes or feedback",
-        required=False,
+    QuestionAuthor = forms.CharField(
+        label="QuestionAuthor?",
+        max_length=255,
     )
-    page_length = forms.IntegerField(
-        required=False, initial=25
+
+    QuestionTitle = forms.CharField(
+        label="QuestionTitle?",
+        max_length=255,
+        required=True,
     )
+
+    QuestionSupply = forms.CharField(
+        label="QuestionSupply",
+        max_length=1000,
+    )
+
+    QuestionBody = forms.CharField(widget=forms.Textarea(attrs={'label': '30'}),
+                                   label='内容：', max_length=2000)
+
+    # attrs={'label': "QuestionBody",},
+    # label="QuestionBody",
+
+    # page_length = forms.IntegerField(
+    #     required=False, initial=25
+    # )
 
     def __init__(self, *args, **kwargs):
         super(ExampleForm, self).__init__(*args, **kwargs)
@@ -53,31 +53,34 @@ class ExampleForm(forms.Form):
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
         self.helper.form_id = 'id-exampleForm'
-        self.helper.form_method = 'get'
-        self.helper.form_action = 'adc'
+        # self.helper.form_method = 'get'
+        # self.helper.form_action = 'adc'
         # self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
-            Div(Field('page_length',
-                      template='pdemo/reports_condition.html',
-                      css_class='input-sm'
-                      ), css_class='box-header'),
+            # Div(Field('page_length',
+            #           template='pdemo/reports_condition.html',
+            #           css_class='input-sm'
+            #           ), css_class='box-header'),
+            Div(css_class='box-header'),
             Fieldset(
                 'Tell us your favorite stuff {{ username }}',
-                'like_website',
-                'favorite_number',
-                'favorite_color',
-                'favorite_food',
-                HTML("""
-            <p>We use notes to get better, <strong>please help us {{ username }}</strong></p>
-        """),
-                'notes',
+                'QuestionAuthor',
+                'QuestionTitle',
+                'QuestionSupply',
+                'QuestionBody',
             ),
             FormActions(
                 Submit('save_changes', 'Save changes', css_class="btn-primary"),
-                Submit('cancel', 'Cancel'),
+                # Submit('cancel', 'Cancel'),
+                Reset('name', 'Cancel', css_class="btn-primary"),
             ),
-
         )
+
+
+class Question(forms.ModelForm):
+    class Meta:
+        model = Bbs
+        fields = '__all__'
 
 
 # class ServerForm(forms.Form):
