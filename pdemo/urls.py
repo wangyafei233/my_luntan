@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^$', views.question_view, name='shouye'),
     url(r'^answer/$', views.answer_view, name='answer'),
     url(r'^user/$', views.user_view, name='user'),
+    url(r'^show/$', views.question_select_view, name='show'),
 ]

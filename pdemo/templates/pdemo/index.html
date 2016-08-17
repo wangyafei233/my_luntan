@@ -30,10 +30,10 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-lg-2" style="border: double;">
-            Sidebar content {{ erro }}
+            Sidebar content {{ erro }} <a href="{% url 'show' %}">select question</a>
         </div>
         <div class="col-sm-offset-1 col-sm-9" style="border: double;">
-            Body content&nbsp;&nbsp;&nbsp;&nbsp;<a href="/answer">answer</a>
+            Body content&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'answer' %}">answer</a>
         </div>
     </div>
 </div>

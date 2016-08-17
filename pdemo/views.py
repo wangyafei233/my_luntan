@@ -47,3 +47,16 @@ def user_view(request, template='pdemo/user_save.html'):
             form1.save()
 
     return render(request, template, {'form': form})
+
+
+def question_select_view(request, template='pdemo/question_show.html'):
+    form = User()
+    if request.method == 'POST':
+        form1 = User(request.POST)
+        # form.data['end_time'] = datetime.today()
+        if form.is_valid():
+            form1.save()
+    else:
+        data = Bbs.objects.all()
+
+    return render(request, template, {'form': form, 'bbs_data': data})
