@@ -8,9 +8,9 @@ from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div, \
     ButtonHolder, HTML, Reset, Button
 from django import forms
 from django.core.urlresolvers import reverse
-from django.forms import TimeField, IntegerField, Textarea
+from django.forms import TimeField, IntegerField, Textarea, CharField
 from django.utils.translation import ugettext as _
-from .models import Report, Bbs
+from .models import Report, Bbs, Comment
 
 
 class ExampleForm(forms.Form):
@@ -83,19 +83,24 @@ class Question(forms.ModelForm):
         fields = '__all__'
 
 
-# class ServerForm(forms.Form):
-#     user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
-#                            widget=forms.TextInput(attrs={'size': 20,}))
-#     ip = forms.IntegerField(label=_(u"IP地址"), max_length=20, required=True,
-#                               widget=forms.TextInput(attrs={'size': 20,}))
-#     port = forms.IntegerField(label=_(u"通信端口"), required=True,
-#                               widget=forms.TextInput(attrs={'size': 20,}))
-#     cpunum = forms.IntegerField(label=_(u"CPU个数"), required=True,
-#                                 widget=forms.TextInput(attrs={'size': 20,}))
-#     mem = forms.IntegerField(label=_(u"内存"), required=True,
-#                              widget=forms.TextInput(attrs={'size': 20,}))
-#     state = forms.CharField(label=_(u"状态"), max_length=30, required=True,
-#                             widget=forms.TextInput(attrs={'size': 20,}))
+class Answer(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        widgets = {
+            'AnswerBody': Textarea(attrs={'class': 'vLargeTextField'}),
+        }
+        # labels = {
+        #     'name': _('Writer'),
+        # }
+        # help_texts = {
+        #     'name': _('Some useful help text.'),
+        # }
+        # error_messages = {
+        #     'name': {
+        #         'max_length': _("This writer's name is too long."),
+        #     },
+        # }
 
 
 class User(forms.ModelForm):
@@ -116,3 +121,17 @@ class User(forms.ModelForm):
         if name == '':
             raise forms.ValidationError("价格必须大于零")
         return name
+
+# class ServerForm(forms.Form):
+#     user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
+#                            widget=forms.TextInput(attrs={'size': 20,}))
+#     ip = forms.IntegerField(label=_(u"IP地址"), max_length=20, required=True,
+#                             widget=forms.TextInput(attrs={'size': 20,}))
+#     port = forms.IntegerField(label=_(u"通信端口"), required=True,
+#                               widget=forms.TextInput(attrs={'size': 20,}))
+#     cpunum = forms.IntegerField(label=_(u"CPU个数"), required=True,
+#                                 widget=forms.TextInput(attrs={'size': 20,}))
+#     mem = forms.IntegerField(label=_(u"内存"), required=True,
+#                              widget=forms.TextInput(attrs={'size': 20,}))
+#     state = forms.CharField(label=_(u"状态"), max_length=30, required=True,
+#                             widget=forms.TextInput(attrs={'size': 20,}))

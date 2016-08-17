@@ -13,28 +13,27 @@
 <body>
 <div style="width: 1500px;height: 100%;margin-left: auto;margin-right: auto;padding-left: 50px;">
 
-{#    <form method='POST' id="id-exampleForm" class="form-horizontal">#}
-{#    {% csrf_token %}#}
-{#        {% for field in form %}#}
-{#            <div class='fieldWrapper'>#}
-{#                {{ field.label_tag }}:{{ field }}#}
-{#                {{ field.errors }}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <p><input type='submit' value='留言'></p>#}
-{#    </form>#}
+    {#    <form method='POST' id="id-exampleForm" class="form-horizontal">#}
+    {#    {% csrf_token %}#}
+    {#        {% for field in form %}#}
+    {#            <div class='fieldWrapper'>#}
+    {#                {{ field.label_tag }}:{{ field }}#}
+    {#                {{ field.errors }}#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#        <p><input type='submit' value='留言'></p>#}
+    {#    </form>#}
 
-
-        {% crispy form %}
+    {% crispy form %}
 </div>
 
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-lg-2" style="border: double;">
-            Sidebar content
+            Sidebar content {{ erro }}
         </div>
         <div class="col-sm-offset-1 col-sm-9" style="border: double;">
-            Body content
+            Body content&nbsp;&nbsp;&nbsp;&nbsp;<a href="/answer">answer</a>
         </div>
     </div>
 </div>

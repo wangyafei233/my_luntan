@@ -14,3 +14,5 @@ AnswerAuthor varchar(20) --回答作者
 AnswerTime datatime 默认值getdate() --回答时间
 AnswerBody varchar(10000) --回答答案
 QuestionID int --问题ID 跟 上面的外键
+
+浏览器关闭 1.request.session.set_expiry(0) 2.SESSION_EXPIRE_AT_BROWSER_CLOSE = True

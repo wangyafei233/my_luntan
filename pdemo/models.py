@@ -100,10 +100,11 @@ class Bbs(models.Model):
 
 class Comment(models.Model):
     Question = models.ForeignKey(Bbs, null=True)
-    AnswerAuthor = models.CharField(_(''), max_length=255, unique=True,
+    AnswerAuthor = models.CharField(_('AnswerAuthor: '), max_length=255,
                                     blank=True, )
-    AnswerTime = models.DateTimeField()
-    AnswerBody = models.CharField(max_length=1000, )
+    AnswerTime = models.DateTimeField(_('AnswerTime: '), auto_now=True,
+                                      blank=True)
+    AnswerBody = models.TextField(_('AnswerBody: '), max_length=1000, )
 
     def __unicode__(self):
         return self.AnswerAuthor
