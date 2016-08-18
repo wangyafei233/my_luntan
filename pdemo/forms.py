@@ -8,7 +8,7 @@ from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div, \
     ButtonHolder, HTML, Reset, Button
 from django import forms
 from django.core.urlresolvers import reverse
-from django.forms import TimeField, IntegerField, Textarea, CharField
+from django.forms import TimeField, IntegerField, Textarea, TextInput
 from django.utils.translation import ugettext as _
 from .models import Report, Bbs, Comment
 
@@ -89,6 +89,7 @@ class Answer(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'AnswerBody': Textarea(attrs={'class': 'vLargeTextField'}),
+            'AnswerAuthor': TextInput(attrs={'class': 'vTextField'}),
         }
         # labels = {
         #     'name': _('Writer'),
