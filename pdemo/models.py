@@ -1,3 +1,4 @@
+from authtools.models import User
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div
@@ -84,8 +85,9 @@ class Report(PublicModel):
 class Bbs(models.Model):
     QuestionTime = models.DateTimeField(_('QuestionTime'), auto_now=True,
                                         blank=True)
-    QuestionAuthor = models.CharField(_('QuestionAuthor'), max_length=255,
-                                      unique=True, blank=True, )
+    # QuestionAuthor = models.CharField(_('QuestionAuthor'), max_length=255,
+    #                                   unique=True, blank=True, )
+    QuestionAuthor = models.ForeignKey(User, null=True)
     QuestionTitle = models.CharField(_('QuestionTitle'), max_length=255,
                                      blank=True, unique=True)
     QuestionSupply = models.CharField(_('QuestionSupply'), max_length=1000, )
@@ -100,8 +102,9 @@ class Bbs(models.Model):
 
 class Comment(models.Model):
     Question = models.ForeignKey(Bbs, null=True)
-    AnswerAuthor = models.CharField(_('AnswerAuthor: '), max_length=255,
-                                    blank=True, )
+    # AnswerAuthor = models.CharField(_('AnswerAuthor: '), max_length=255,
+    #                                 blank=True, )
+    AnswerUser = models.ForeignKey(User, null=True)
     AnswerTime = models.DateTimeField(_('AnswerTime: '), auto_now=True,
                                       blank=True)
     AnswerBody = models.TextField(_('AnswerBody: '), max_length=1000, )

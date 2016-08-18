@@ -20,9 +20,8 @@ class ExampleForm(forms.Form):
         initial=datetime.today()
     )
 
-    QuestionAuthor = forms.CharField(
+    QuestionAuthor = forms.IntegerField(
         label="QuestionAuthor?",
-        max_length=255,
     )
 
     QuestionTitle = forms.CharField(
@@ -71,6 +70,7 @@ class ExampleForm(forms.Form):
             ),
             FormActions(
                 Submit('save_changes', 'Save changes', css_class="btn-primary"),
+                Button('ajax', 'Save changes', css_class="btn-save"),
                 # Submit('cancel', 'Cancel'),
                 Reset('name', 'Cancel', css_class="btn-primary"),
             ),
@@ -86,6 +86,7 @@ class Question(forms.ModelForm):
 class Answer(forms.ModelForm):
     class Meta:
         model = Comment
+        # fields = ['AnswerAuthor', 'AnswerBody']
         fields = '__all__'
         widgets = {
             'AnswerBody': Textarea(attrs={'class': 'vLargeTextField'}),

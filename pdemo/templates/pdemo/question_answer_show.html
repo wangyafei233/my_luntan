@@ -46,25 +46,29 @@
 <div class="row show-grid">
     <div class="col-lg-8 col-lg-offset-3">
         <div class="col-lg-12">
-            <form method="post" action="">
-                <table>
-                    <tbody>
-                    {% for message in answer_data %}
-                        <tr>
-                            <td>{{ message.AnswerAuthor }}</td>
-                            <td>{{ message.AnswerTime }}</td>
-                            <td>{{ message.AnswerBody }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </form>
+            <table>
+                <tbody>
+                {% for message in answer_data %}
+                    <tr>
+                        <td>{{ message.AnswerAuthor }}</td>
+                        <td>{{ message.AnswerTime }}</td>
+                        <td>{{ message.AnswerBody }}**{{ message.AnswerUser.id }}**{{ bbs_data.id }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
 
         <div class="col-lg-12">
             <div class="col-lg-12">
-                <textarea rows="3" cols="102" autofocus>来说两句吧...</textarea>
+                    <textarea style="" rows="3" cols="102"
+                              autofocus>来说两句吧... </textarea>
             </div>
+            {#            <div style="z-index: -1;display:none;">#}
+            {#                <input type="text" name="Question" value="{{ bbs_data.id }}">#}
+            {#                <input type="text" name="AnswerAuthor" value="我是无辜的 等下就删除">#}
+            {#                <input type="text" name="AnswerUser">#}
+            {#            </div>#}
             <div class="col-lg-12">
                 <div class="col-lg-2 col-lg-offset-10">
                     <a href="javascript:void(0)">
