@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
-    <meta charset="UTF-8">
-    <title>answer</title>
-    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
-          rel="stylesheet">
-</head>
-<body>
-<table>
-    <form method='POST'>
-        {% csrf_token %}
-        {% for field in form %}
+{% extends 'pdemo/base/base.html' %}
+
+{% block title %}
+    answer
+{% endblock %}
+{% block content %}
+    <table>
+        <form method='POST'>
+            {% csrf_token %}
+            {% for field in form %}
+                <tr>
+                    <th>{{ field.label_tag }}</th>
+                    <td>{{ field }}</td>
+                    <td>{{ field.errors }}</td>
+                </tr>
+            {% endfor %}
             <tr>
-                <th>{{ field.label_tag }}</th>
-                <td>{{ field }}</td>
-                <td>{{ field.errors }}</td>
+                <td colspan="3" style="text-align: center;"><input type='submit'
+                                                                   value='留言'>
+                </td>
             </tr>
-        {% endfor %}
-        <tr>
-            <td colspan="3" style="text-align: center;"><input type='submit'
-                                                               value='留言'></td>
-        </tr>
-    </form>
-</table>
-</body>
-</html>
+        </form>
+    </table>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load i18n admin_static %}<!DOCTYPE html>
+{% block tou %}{% endblock %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="
+            {% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+    <link rel="stylesheet"
+          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {% block extrastyle %}{% endblock %}
+    {% block script %}{% endblock %}
+
+    {% block blockbots %}
+        <meta name="robots" content="NONE,NOARCHIVE"/>
+    {% endblock %}
+</head>
+{% load i18n %}
+
+<body>
+<div>
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="/">View site</a></h1>
+        </div>
+        <div id="user-tools">
+            Welcome,
+            <strong>{{ request.user.name }}</strong>.
+            {#        <a href="/superadmin/password_change/">Change password</a> /#}
+            <a href="/superadmin/logout/">Log out</a>
+        </div>
+    </div>
+    {% block navigation %}{% endblock %}
+    {% block contents %}
+        <div class="row">
+            <div class="col-lg-10 col-sm-offset-1">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+    {% block footer %}{% endblock %}
+</div>
+</body>
+</html>

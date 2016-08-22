@@ -1,0 +1,51 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"
+          href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="static/mydemo_index.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#id_user").val("{{ request.user.id }}");
+        })
+    </script>
+
+    <title></title>
+</head>
+<body>
+
+<div id="header">
+    <div id="branding">
+        <h1 id="site-name"><a href="/">View site</a></h1>
+    </div>
+    <div id="user-tools">
+        Welcome,
+        <strong>{{ request.user.name }}</strong>.
+        <a href="/superadmin/password_change/">Change password</a> /
+        <a href="/superadmin/logout/">Log out</a>
+    </div>
+</div>
+
+<div style="width: 1500px;height: 100%;margin-left: auto;margin-right: auto;padding-left: 50px;">
+    {% crispy form %}
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-lg-2" style="border: double;">
+            Sidebar content {{ erro }} <a href="{% url 'show' %}">select
+            question</a>
+        </div>
+        <div class="col-sm-offset-1 col-sm-9" style="border: double;">
+            Body content&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'answer' %}">answer</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

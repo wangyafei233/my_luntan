@@ -56,21 +56,19 @@ class ExampleForm(forms.Form):
         # self.helper.form_action = 'adc'
         # self.helper.add_input(Submit('submit', 'Submit'))
         self.helper.layout = Layout(
-            # Div(Field('page_length',
-            #           template='pdemo/reports_condition.html',
-            #           css_class='input-sm'
-            #           ), css_class='box-header'),
-            Div(css_class='box-header'),
+            # Div(Field('QuestionAuthor',
+            #           css_class='userid',
+            #           ), css_class='box-header',),
+            Div(css_class='box-header', css_id='box_id'),
             Fieldset(
                 'Tell us your favorite stuff {{ username }}',
-                'QuestionAuthor',
+                # 'QuestionAuthor',
                 'QuestionTitle',
                 'QuestionSupply',
                 'QuestionBody',
             ),
             FormActions(
                 Submit('save_changes', 'Save changes', css_class="btn-primary"),
-                Button('ajax', 'Save changes', css_class="btn-save"),
                 # Submit('cancel', 'Cancel'),
                 Reset('name', 'Cancel', css_class="btn-primary"),
             ),

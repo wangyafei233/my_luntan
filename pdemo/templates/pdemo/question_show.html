@@ -1,30 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>question_show</title>
-</head>
-<body>
-{% load i18n %}
-<div class="box-body">
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>{% trans 'QuestionTitle' %}</th>
-            <th>{% trans 'QuestionSupply' %}</th>
-            <th>{% trans 'QuestionTime' %}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for data in bbs_data %}
-            <tr style="text-align: center">
-                <td><a href={% url 'question' data.id  %} >{{ data.QuestionTitle }}</a></td>
-                <td>{{ data.QuestionSupply }}</td>
-                <td>{{ data.QuestionTime }}</td>
+{% extends 'pdemo/base/base.html' %}
+{% block title %}
+    question_show
+{% endblock %}
+{% block blockbots %}
+    {% load i18n %}
+{% endblock %}
+{% block content %}
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>{% trans 'QuestionTitle' %}</th>
+                <th>{% trans 'QuestionSupply' %}</th>
+                <th>{% trans 'QuestionTime' %}</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-</body>
-</html>
+            </thead>
+            <tbody>
+            {% for data in bbs_data %}
+                <tr style="text-align: center">
+                    <td>
+                        <a href={% url 'question' data.id %}>{{ data.QuestionTitle }}</a>
+                    </td>
+                    <td>{{ data.QuestionSupply }}</td>
+                    <td>{{ data.QuestionTime }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
