@@ -1,13 +1,14 @@
 {% extends 'pdemo/base/base.html' %}
 {% block title %}
-   question_show
+    question_show
 {% endblock %}
-{% block tou %}
+{% block blockbots %}
     {% load i18n %}
 {% endblock %}
 {% block content %}
     <div class="box-body">
-        <table class="table table-bordered table-striped" style="text-align: center">
+        <table class="table table-bordered table-striped"
+               style="text-align: center">
             <thead>
             <tr>
                 <th>{% trans 'QuestionTitle' %}</th>
