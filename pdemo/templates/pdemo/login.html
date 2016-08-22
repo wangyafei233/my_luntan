@@ -1,36 +1,41 @@
 <html lang="en-us">
 <head>
-    <title>Log in | Django site admin</title>
+    <title>Log in | Lun Tan</title>
     <link href="/static/admin/css/base.css" type="text/css" rel="stylesheet">
     <link href="/static/admin/css/login.css" type="text/css" rel="stylesheet">
     <meta content="NONE,NOARCHIVE" name="robots">
 </head>
-<body >
-
+<body data-admin-utc-offset="28800" class=" login">
 <!-- Container -->
 <div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="/">luntan dizhi</a>
+            </h1>
+        </div>
+    </div>
     <!-- END Header -->
     <!-- Content -->
     <div class="colM" id="content">
         <div id="content-main">
-            <form method="post">
+            <form id="login-form" method="post">
+                {% csrf_token %}
                 <div class="form-row">
-                    {% csrf_token %}
                     <label for="id_username" class="required">Email
                         address:</label> <input type="text" name="username"
                                                 maxlength="254"
                                                 id="id_username">
                 </div>
                 <div class="form-row">
-
                     <label for="id_password" class="required">Password:</label>
                     <input type="password" name="password" id="id_password">
+                    <input type="hidden" value="/" name="next">
                 </div>
                 <div class="submit-row">
                     <label>&nbsp;</label><input type="submit" value="Log in">
                 </div>
             </form>
-
             <script type="text/javascript">
                 document.getElementById('id_username').focus()
             </script>
@@ -40,5 +45,6 @@
     <!-- END Content -->
     <div id="footer"></div>
 </div>
+<!-- END Container -->
 </body>
 </html>
