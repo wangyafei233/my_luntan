@@ -81,6 +81,9 @@ class Report(PublicModel):
     label = models.CharField(_('Label'), max_length=255, blank=True)
     order = models.IntegerField(default=0, )
 
+    class Meta:
+        ordering = ["name"]
+
 
 class Bbs(models.Model):
     QuestionTime = models.DateTimeField(_('QuestionTime'), auto_now=True,
