@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>{{ message }}</h3>
+<form action="{% url "upload_pic" %}" method="post"
+      enctype="multipart/form-data">{% csrf_token %}
+    <p>
+        <input id="id_image" type="file" class="" name="image">
+        <!-- 这一行应该是form.image，省事写的 -->
+    </p>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% for img_up in img %}
+    <img src="{% static img_up.model_pic.name %}"/>
+{% endfor %}
+
+</body>
+</html>

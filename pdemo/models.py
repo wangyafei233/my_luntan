@@ -5,6 +5,7 @@ from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div
 from django import forms
 from django.utils.translation import ugettext as _
 from django.db import models
+from authtools.models import AbstractNamedUser
 
 
 class PublicModel(models.Model):
@@ -117,3 +118,15 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['AnswerTime']
+
+
+class ExampleModel(models.Model):
+    model_pic = models.ImageField(upload_to='pic_folder/',
+                                  default='pic_folder/None/no-img.jpg')
+
+
+# class User(AbstractNamedUser):
+#     username11 = models.CharField(_('username11'), max_length=30, unique=True)
+#
+#     class Meta:
+#         db_table = 'auth_user'

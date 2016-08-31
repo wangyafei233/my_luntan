@@ -122,6 +122,11 @@ class User(forms.ModelForm):
             raise forms.ValidationError("价格必须大于零")
         return name
 
+
+class ImageUploadForm(forms.Form):
+    """Image upload form."""
+    image = forms.ImageField()
+
 # class ServerForm(forms.Form):
 #     user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
 #                            widget=forms.TextInput(attrs={'size': 20,}))
