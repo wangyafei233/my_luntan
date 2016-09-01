@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # coding:utf-8
+from authtools.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
 from .models import MessageForm, Report, Bbs, Comment, ExampleModel
-from .forms import ExampleForm, User, Question, Answer, ImageUploadForm
+from .forms import ExampleForm, Question, Answer, ImageUploadForm, \
+    ViewActionForm
+from .forms import User as User1
 from authtools.views import LoginRequiredMixin
 
 
@@ -31,9 +35,9 @@ def adc_view(request, template='pdemo/z_adc.html'):
 
 @login_required()
 def user_view(request, template='pdemo/z_user_save.html'):
-    form = User()
+    form = User1()
     if request.method == 'POST':
-        form1 = User(request.POST)
+        form1 = User1(request.POST)
         # form.data['end_time'] = datetime.today()
         if form.is_valid():
             form1.save()
@@ -58,8 +62,24 @@ def question_view(request, template='pdemo/index.html'):
 
 @login_required()
 def question_select_view(request, template='pdemo/question_show.html'):
-    data = Bbs.objects.all()
-    return render(request, template, {'bbs_data': data})
+    form = ViewActionForm()
+    data = None
+    search_args = []
+    if request.method == 'POST':
+        form1 = ViewActionForm(request.POST)
+        if form1.is_valid():
+            title = form1.cleaned_data['title']
+            authon = form1.cleaned_data['author_z']
+            if title: search_args.append(Q(QuestionTitle__contains=title))
+            if authon: search_args.append(
+                Q(QuestionAuthor__name__exact=authon))
+            data = Bbs.objects.filter(*search_args)
+            # data = Bbs.objects.filter(QuestionTitle__contains=title).filter(
+            #     QuestionAuthor=user_id)
+            # user_id = User.objects.filter(name=authon)
+            # q = {'QuestionTitle__contains': title} #add q['key']='value'
+
+    return render(request, template, {'bbs_data': data, 'form': form})
 
 
 @login_required()

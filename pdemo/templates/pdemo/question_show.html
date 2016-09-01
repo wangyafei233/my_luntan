@@ -1,32 +1,89 @@
 {% extends 'pdemo/base/base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}
     question_show
 {% endblock %}
 {% block blockbots %}
     {% load i18n %}
 {% endblock %}
-{% block content %}
-    <div class="box-body">
-        <table class="table table-bordered table-striped"
-               style="text-align: center">
-            <thead>
-            <tr>
-                <th>{% trans 'QuestionTitle' %}</th>
-                <th>{% trans 'QuestionSupply' %}</th>
-                <th>{% trans 'QuestionTime' %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for data in bbs_data %}
-                <tr>
-                    <td>
-                        <a href={% url 'question' data.id %}>{{ data.QuestionTitle }}</a>
-                    </td>
-                    <td>{{ data.QuestionSupply }}</td>
-                    <td>{{ data.QuestionTime }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+
+{% block content_top %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body goldcap-query-form">
+                    <div id="content no-print" class="query box box-info">
+                        {% crispy form %}
+                    </div>
+                    <div id="print-table" class="no-print margin-top-5">
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>{% trans 'QuestionTitle' %}</th>
+                                    <th>{% trans 'QuestionSupply' %}</th>
+                                    <th>{% trans 'QuestionTime' %}</th>
+                                    <td>operation</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if bbs_data %}
+                                    {% for data in bbs_data %}
+                                        <tr>
+                                            <td>
+                                                <a href={% url 'question' data.id %}>{{ data.QuestionTitle }}</a>
+                                            </td>
+                                            <td>{{ data.QuestionSupply }}</td>
+                                            <td>{{ data.QuestionTime }}</td>
+                                            <td>
+                                                <button class="btn btn-success">
+                                                    修改
+                                                </button>
+                                                <button class="btn btn-danger">
+                                                    删除
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3">No results</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+    <br><br>
 {% endblock %}
+
+{#{% block content %}#}
+{#    <div class="box-body">#}
+{#        <table class="table table-bordered table-striped"#}
+{#               style="text-align: center">#}
+{#            <thead>#}
+{#            <tr>#}
+{#                <th>{% trans 'QuestionTitle' %}</th>#}
+{#                <th>{% trans 'QuestionSupply' %}</th>#}
+{#                <th>{% trans 'QuestionTime' %}</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% for data1 in bbs_data1 %}#}
+{#                <tr>#}
+{#                    <td>#}
+{#                        <a href={% url 'question' data.id %}>{{ data1.QuestionTitle }}</a>#}
+{#                    </td>#}
+{#                    <td>{{ data1.QuestionSupply }}</td>#}
+{#                    <td>{{ data1.QuestionTime }}</td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#    </div>#}
+{#{% endblock %}#}

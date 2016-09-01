@@ -127,6 +127,52 @@ class ImageUploadForm(forms.Form):
     """Image upload form."""
     image = forms.ImageField()
 
+
+class ViewActionForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(ViewActionForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-1'
+        self.helper.field_class = 'col-md-11'
+        self.helper.layout = Layout(
+            Div(Field('page_length',
+                      template='pdemo/z_reports_condition.html',
+                      css_class='input-sm'
+                      ), css_class='box-header'),
+            Fieldset(
+                None,
+                Field('title'),
+                # Field('time'),
+                Field('author_z'), css_class='box-body'
+            ),
+        )
+
+    title = forms.CharField(
+        required=False,
+        label=_("Title : "),
+        max_length=255,
+        initial="",
+    )
+
+    time = forms.CharField(
+        required=False,
+        label=_("Time : "),
+        max_length=255,
+        initial="",
+    )
+
+    author_z = forms.CharField(
+        required=False,
+        label=_("Author : "),
+        max_length=255,
+        initial="",
+    )
+    page_length = forms.IntegerField(
+        required=False,
+    )
+
 # class ServerForm(forms.Form):
 #     user = forms.CharField(label=_(u"名称"), max_length=30, required=True,
 #                            widget=forms.TextInput(attrs={'size': 20,}))

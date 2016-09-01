@@ -4,6 +4,7 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="
+
             {% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}"/>
     <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
     <link rel="stylesheet"
@@ -37,6 +38,9 @@
     {% block navigation %}{% endblock %}
     {% block contents %}
         <div class="row">
+            <div class="col-lg-10 col-sm-offset-1">
+                {% block content_top %}{% endblock %}
+            </div>
             <div class="col-lg-10 col-sm-offset-1">
                 {% block content %}{% endblock %}
             </div>
