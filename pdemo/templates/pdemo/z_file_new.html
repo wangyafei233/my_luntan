@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A Simple Page with CKEditor</title>
+    <!-- Make sure the path to CKEditor is correct.
+    <script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>-->
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <div style="width: 600px;">
+            <textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+    </div>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1');
+    </script>
+
+    <input type="submit" value="submit">
+
+</form>
+</body>
+</html>

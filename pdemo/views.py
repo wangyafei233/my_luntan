@@ -110,3 +110,11 @@ def upload_pic(request, template='pdemo/img_up.html'):
             # m.delete()
 
     return render(request, template, {'img': ExampleModel.objects.all()})
+
+
+# 富文本编辑
+def doc_text(request, template='pdemo/z_file_new.html'):
+    if request.method == 'POST':
+        pass
+
+    return render(request, template)
