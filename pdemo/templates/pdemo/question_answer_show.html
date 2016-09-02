@@ -33,13 +33,17 @@
 {% block content %}
     <div class="row show-grid">
         <div class="col-lg-2 col-lg-offset-1"
-             style="height: 30%;"></div>
+             style="height: 300px;"></div>
         <div class="col-lg-8">
             <legend>Tell us your favorite stuff</legend>
             <div class="col-lg-12">
                 <label class="control-label col-lg-2 requiredField">
                     QuestionAuthor:</label>
                 <label class="control-label col-lg-10 requiredField">{{ bbs_data.QuestionAuthor }}</label>
+            </div>
+            <div class="col-lg-12">
+                <label class="control-label col-lg-2 requiredField">QuestionType: </label>
+                <label class="control-label col-lg-10 requiredField">{{ bbs_data.QuestionType }}</label>
             </div>
             <div class="col-lg-12">
                 <label class="control-label col-lg-2 requiredField">QuestionTitle: </label>

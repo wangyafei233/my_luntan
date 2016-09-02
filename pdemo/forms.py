@@ -12,6 +12,13 @@ from django.forms import TimeField, IntegerField, Textarea, TextInput
 from django.utils.translation import ugettext as _
 from .models import Report, Bbs, Comment
 
+list_choices = (
+    ('A', "A类型"),
+    ('B', "B类型"),
+    ('C', "C类型"),
+    ('D', "D类型"),
+)
+
 
 class ExampleForm(forms.Form):
     QuestionTime = forms.DateTimeField(
@@ -33,6 +40,15 @@ class ExampleForm(forms.Form):
     QuestionSupply = forms.CharField(
         label="QuestionSupply",
         max_length=1000,
+    )
+
+    QuestionType = forms.ChoiceField(choices=list_choices, initial="D",
+                                     widget=forms.Select(
+                                         attrs={'class': 'required'}))
+
+    QuestionScore = forms.IntegerField(
+        label="QuestionScore",
+        initial=0,
     )
 
     QuestionBody = forms.CharField(widget=forms.Textarea(attrs={'label': '30'}),
@@ -62,10 +78,11 @@ class ExampleForm(forms.Form):
             Div(css_class='box-header', css_id='box_id'),
             Fieldset(
                 'Tell us your favorite stuff {{ username }}',
-                # 'QuestionAuthor',
+                'QuestionType',
                 'QuestionTitle',
                 'QuestionSupply',
                 'QuestionBody',
+                'QuestionScore',
             ),
             FormActions(
                 Submit('save_changes', 'Save changes', css_class="btn-primary"),

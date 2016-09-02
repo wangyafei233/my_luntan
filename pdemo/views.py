@@ -46,7 +46,13 @@ def user_view(request, template='pdemo/z_user_save.html'):
 
 
 @login_required()
-def question_view(request, template='pdemo/index.html'):
+def question_index(request, template='pdemo/index.html'):
+
+    return render(request, template,)
+
+
+@login_required()
+def question_view(request, template='pdemo/add_question.html'):
     form = ExampleForm()
     form_erro = ''
     if request.method == 'POST':

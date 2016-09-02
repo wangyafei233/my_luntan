@@ -94,8 +94,12 @@ class Bbs(models.Model):
     QuestionAuthor = models.ForeignKey(User, null=True)
     QuestionTitle = models.CharField(_('QuestionTitle'), max_length=255,
                                      blank=True, unique=True)
+    QuestionType = models.CharField(_('QuestionType'), max_length=255,
+                                    blank=True, )
+    QuestionScore = models.IntegerField(_('QuestionScore'), blank=True,
+                                        default=0)
     QuestionSupply = models.CharField(_('QuestionSupply'), max_length=1000, )
-    QuestionBody = models.TextField(_('QuestionBody'), max_length=2000, )
+    QuestionBody = models.TextField(_('QuestionBody'), max_length=8000, )
 
     def __unicode__(self):
         return self.QuestionTitle
@@ -123,7 +127,6 @@ class Comment(models.Model):
 class ExampleModel(models.Model):
     model_pic = models.ImageField(upload_to='pic_folder/',
                                   default='pic_folder/None/no-img.jpg')
-
 
 # class User(AbstractNamedUser):
 #     username11 = models.CharField(_('username11'), max_length=30, unique=True)

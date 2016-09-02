@@ -21,6 +21,7 @@
                                 <thead>
                                 <tr>
                                     <th>{% trans 'QuestionTitle' %}</th>
+                                    <th>{% trans 'QuestionType' %}</th>
                                     <th>{% trans 'QuestionSupply' %}</th>
                                     <th>{% trans 'QuestionTime' %}</th>
                                     <td>operation</td>
@@ -33,6 +34,7 @@
                                             <td>
                                                 <a href={% url 'question' data.id %}>{{ data.QuestionTitle }}</a>
                                             </td>
+                                            <td>{{ data.QuestionType }}</td>
                                             <td>{{ data.QuestionSupply }}</td>
                                             <td>{{ data.QuestionTime }}</td>
                                             <td>
