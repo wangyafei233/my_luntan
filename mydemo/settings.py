@@ -38,8 +38,10 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'authtools',
+    'channels',
 
     'pdemo',
+    'channels_test',
 
 ]
 
@@ -88,18 +90,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    #     },
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 # Internationalization
@@ -131,3 +133,11 @@ AUTH_USER_MODEL = 'authtools.User'
 LOGIN_REDIRECT_URL = '/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# channels
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "channels_test.routing.channel_routing",
+    },
+}
