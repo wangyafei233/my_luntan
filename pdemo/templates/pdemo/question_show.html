@@ -5,6 +5,48 @@
 {% endblock %}
 {% block blockbots %}
     {% load i18n %}
+    {% load staticfiles %}
+{% endblock %}
+
+{% block extrastyle %}
+    <link type="text/css" rel="stylesheet"
+          href="{% static 'css/jquery.dataTables.css' %}">
+    <script type="text/javascript"
+            src="{% static 'js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "sPaginationType": "full_numbers",
+                        "bPaginate": true, //翻页功能
+                        "bLengthChange": true, //改变每页显示数据数量
+                        "bFilter": true, //过滤功能
+                        "bSort": true, //排序功能
+                        "bInfo": true,//页脚信息
+                        "bAutoWidth": true//自动宽度
+                    }
+            );
+        });
+
+        {#        function delete_data(id) {#}
+        {#            $.ajax({#}
+        {#                url: "{% url 'delete1' %}",#}
+        {#                data: {"id_qust": id},#}
+        {#                success: function (data) {#}
+        {#                    refresh();#}
+        {#                },#}
+        {#                error: function (data) {#}
+        {#                }#}
+        {#            })#}
+        {#        }#}
+        {#        function refresh() {#}
+        {#            window.location.href=window.location.href;#}
+        {#        }#}
+
+
+    </script>
 {% endblock %}
 
 {% block content_top %}
@@ -17,7 +59,9 @@
                     </div>
                     <div id="print-table" class="no-print margin-top-5">
                         <div class="box-body">
-                            <table class="table table-bordered table-striped">
+
+                            <table class="table table-bordered table-striped"
+                                   id="table_id">
                                 <thead>
                                 <tr>
                                     <th>{% trans 'QuestionTitle' %}</th>
@@ -38,12 +82,25 @@
                                             <td>{{ data.QuestionSupply }}</td>
                                             <td>{{ data.QuestionTime }}</td>
                                             <td>
-                                                <button class="btn btn-success">
+                                                {#                                                <button class="btn btn-success">#}
+                                                {#                                                    修改#}
+                                                {#                                                </button>#}
+                                                {#                                                <button class="btn btn-danger">#}
+                                                {#                                                    删除#}
+                                                {#                                                </button>#}
+                                                <button class="btn">
                                                     修改
                                                 </button>
-                                                <button class="btn btn-danger">
-                                                    删除
-                                                </button>
+                                                <a href={% url 'qst_delete' data.id %}>
+                                                    <button class="btn">
+                                                        删除
+                                                    </button>
+                                                </a>
+                                                {#                                                <button class="btn"#}
+                                                {#                                                        onclick="delete_data({{ data.id }})">#}
+                                                {#                                                    删除#}
+                                                {#                                                </button>#}
+
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -54,6 +111,7 @@
                                 {% endif %}
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

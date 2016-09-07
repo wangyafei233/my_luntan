@@ -6,6 +6,7 @@ from crispy_forms.bootstrap import FormActions, AppendedText, PrependedText
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Fieldset, Field, Div, \
     ButtonHolder, HTML, Reset, Button
+from django.core.exceptions import ValidationError
 from django import forms
 from django.core.urlresolvers import reverse
 from django.forms import TimeField, IntegerField, Textarea, TextInput
@@ -31,11 +32,9 @@ class ExampleForm(forms.Form):
         label="QuestionAuthor?",
     )
 
-    QuestionTitle = forms.CharField(
-        label="QuestionTitle?",
-        max_length=255,
-        required=True,
-    )
+    QuestionTitle = forms.CharField(max_length=255, label="QuestionTitle?",
+                                    required=True,
+                                    error_messages={'required': u'别名不能为空'}, )
 
     QuestionSupply = forms.CharField(
         label="QuestionSupply",
@@ -51,8 +50,9 @@ class ExampleForm(forms.Form):
         initial=0,
     )
 
-    QuestionBody = forms.CharField(widget=forms.Textarea(attrs={'label': '30'}),
-                                   label='内容：', max_length=2000)
+    QuestionBody = forms.CharField(
+        widget=forms.Textarea(attrs={'label': '30', 'id': 'editor1'}),
+        label='内容：', max_length=8000)
 
     # attrs={'label': "QuestionBody",},
     # label="QuestionBody",
@@ -67,7 +67,7 @@ class ExampleForm(forms.Form):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
-        self.helper.form_id = 'id-exampleForm'
+        # self.helper.form_id = 'id-exampleForm'
         # self.helper.form_method = 'get'
         # self.helper.form_action = 'adc'
         # self.helper.add_input(Submit('submit', 'Submit'))

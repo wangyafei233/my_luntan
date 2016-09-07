@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # coding:utf-8
+import json
 from authtools.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -47,8 +48,7 @@ def user_view(request, template='pdemo/z_user_save.html'):
 
 @login_required()
 def question_index(request, template='pdemo/index.html'):
-
-    return render(request, template,)
+    return render(request, template, )
 
 
 @login_required()
@@ -85,7 +85,8 @@ def question_select_view(request, template='pdemo/question_show.html'):
             # user_id = User.objects.filter(name=authon)
             # q = {'QuestionTitle__contains': title} #add q['key']='value'
 
-    return render(request, template, {'bbs_data': data, 'form': form})
+    return render(request, template,
+                  {'bbs_data': data, 'form': form})
 
 
 @login_required()
@@ -101,8 +102,31 @@ def question_answer_show(request, question_id,
                   {'bbs_data': question_data, 'answer_data': answer_data})
 
 
+@login_required()
+def question_delete(request, question_id):
+    # question_id = int(request.GET['id_qust'])
+    question_data = Bbs.objects.filter(id=question_id).first()
+    answer_data = question_data.comment_set.all()
+    question_data.delete()
+    if answer_data:
+        for answer_item in answer_data:
+            answer_item.delete()
+    return HttpResponseRedirect('/show')
+
+
+# def question_delete1(request):
+#     question_id = int(request.GET['id_qust'])
+#     question_data = Bbs.objects.filter(id=question_id).first()
+#     answer_data = question_data.comment_set.all()
+#     question_data.delete()
+#     if answer_data:
+#         for answer_item in answer_data:
+#             answer_item.delete()
+#     return HttpResponseRedirect('/show')
+
+
 # 上传图片
-def upload_pic(request, template='pdemo/img_up.html'):
+def upload_pic(request, template='pdemo/z_img_up.html'):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)  # 有文件上传要传如两个字段
         if form.is_valid():
