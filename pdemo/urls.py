@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^adc/$', views.adc_view, name='adc'),
     url(r'^img/', views.upload_pic, name="upload_pic"),
     url(r'^doctext/', views.doc_text, name="doctext"),
-    # url(r'^delete1/', views.question_delete1, name="delete1"),
+    url(r'^datatableview/', views.GoldcapProjectsDatatableView.as_view(),
+        name="datatableview"),
 
 ]

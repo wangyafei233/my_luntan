@@ -2,6 +2,8 @@
 # coding:utf-8
 import json
 from authtools.models import User
+from datatableview.views import DatatableView
+from datatableview import helpers
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -13,6 +15,7 @@ from .forms import ExampleForm, Question, Answer, ImageUploadForm, \
     ViewActionForm
 from .forms import User as User1
 from authtools.views import LoginRequiredMixin
+from django.contrib.contenttypes.models import ContentType
 
 
 @login_required()
@@ -148,3 +151,7 @@ def doc_text(request, template='pdemo/z_file_new.html'):
         pass
 
     return render(request, template)
+
+
+class GoldcapProjectsDatatableView(LoginRequiredMixin, DatatableView):
+    pass
