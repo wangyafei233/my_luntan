@@ -16,6 +16,7 @@ def ws_connect(message):
     # of websocket). So, this is effectively a version of _get_object_or_404.
     try:
         prefix, label = message['path'].strip('/').split('/')
+        label = label[5:]
         if prefix != 'chat':
             log.debug('invalid ws path=%s', message['path'])
             return
