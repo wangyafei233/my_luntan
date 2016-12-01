@@ -1,24 +1,4 @@
-Django
-django-authtools
-django-crispy-forms
-Genshi
-Pillow
-pip
-setuptools
-wheel
-
-channels
-daphne
-Twisted
-
-zope.interface
-haikunator
-
-asgiref
-autobahn
-txaio
-six
-
+my project annotation
 
 pip freeze > requirements.txt
 
