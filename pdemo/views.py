@@ -79,9 +79,10 @@ def question_select_view(request, template='pdemo/question_show.html'):
         if form1.is_valid():
             title = form1.cleaned_data['title']
             authon = form1.cleaned_data['author_z']
-            if title: search_args.append(Q(QuestionTitle__contains=title))
-            if authon: search_args.append(
-                Q(QuestionAuthor__name__exact=authon))
+            if title:
+                search_args.append(Q(QuestionTitle__contains=title))  # 模糊查询
+            if authon:
+                search_args.append(Q(QuestionAuthor__name__exact=authon))
             data = Bbs.objects.filter(*search_args)
             # data = Bbs.objects.filter(QuestionTitle__contains=title).filter(
             #     QuestionAuthor=user_id)
