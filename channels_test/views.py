@@ -13,6 +13,7 @@ def about(request):
     return render(request, "chat/about.html")
 
 
+@login_required()
 def new_room(request):
     """
     Randomly create a new room, and redirect to it.
