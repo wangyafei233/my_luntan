@@ -1,11 +1,14 @@
 import random
 import string
+
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render, redirect
 import haikunator
 from .models import Room
 
 
+@login_required()
 def about(request):
     return render(request, "chat/about.html")
 
