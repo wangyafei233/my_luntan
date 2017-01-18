@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/* CSS Document */
+body{
+	padding: 20px;/*内边距20像素*/
+	background-color:#FFFFFF;/*背景色为白色*/
+}
+a.login{
+	float:right;/*向右浮动，靠下个元素的右边显示*/
+	color:#000000;/*设置颜色为黑色*/
+	text-decoration:none; /*文本修饰属性，none以标准文本显示，underline下划线，overline上划线等*/
+}
+a.banner{
+	display:block;/*作为块元素显示，前后带有换行符，可调节宽高，内外边距等*/
+	width:250px;
+	height:80px;
+	background:url(../images/maystudio-figure.png) no-repeat 150px -80px;/*设置背景图片并设置不重复和位置*/
+	transition:background-position .1s ease-out .1s; /*平滑切换，0.1s后，背景位置以先快后慢的速度用0.1s平滑切换*/
+}
+a.banner .banner-logo{
+	position:absolute;/*绝对布局，没有设定trbl属性时以父元素的坐标为始点，设置后以浏览器左上角为原始点*/
+	left:20px;/*图片以（20，0）为原点*/
+	transition:all .1s ease-in .0s;
+}
+a.banner .banner-desc{
+	position:absolute;
+	top:35px;
+	left:50px;
+	color:#000000;
+	opacity:0;/*设置不透明度为0，即不可见*/
+}
+a.banner:hover, a.banner:focus{ /*当鼠标停留在该元素上或获得焦点（按键盘上的tab键）时所做的动作*/
+	background-position:150px 0px;
+}
+a.banner:hover .banner-logo, a.banner:focus .banner-logo{
+	position:absolute;
+	left:-300px;
+}
+a.banner:hover .banner-desc, a.banner:focus .banner-desc{
+	opacity:1;
+}

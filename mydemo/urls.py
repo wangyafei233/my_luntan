@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^', include('pdemo.urls')),
     url(r'^chat/', include('channels_test.urls')),
     url(r'^accounts/', include('authtools.urls')),
+    url(r'^freedom/', include('freedom.urls')),
 ]

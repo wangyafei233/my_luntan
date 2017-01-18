@@ -1,0 +1,179 @@
+body {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #333;
+    font-size: 15px;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cleaner {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul {
+    margin: 0 auto;
+
+    list-style: none;
+    line-height: 40px;
+    width: 180px;
+}
+
+ul li {
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+ul li:last-child {
+    border: 0px;
+}
+
+/* HEADER */
+.header {
+    display: none;
+    background-color: #fff;
+    z-index: 999;
+    border-bottom: 1px solid #f3f3f3;
+
+    width: 100%;
+    height: 80px;
+}
+
+.header .logo {
+    position: relative;
+    float: left;
+    text-align: left;
+
+    height: 40px;
+    width: 25%;
+    margin: 20px 0px 0px 0px;
+}
+
+.header .logo img {
+    height: 100%;
+}
+
+.header .menu-trigger {
+    display: none;
+}
+
+.header .menu-wrapper {
+    position: relative;
+    float: left;
+
+    width: 75%;
+    height: 40px;
+    margin: 28px 0px 0px 0px;
+}
+
+.header .menu-wrapper .menu {
+    position: absolute;
+    list-style: none;
+
+    right: 0px;
+}
+
+.header .menu-wrapper .menu li {
+    float: left;
+
+    margin: 0px 0px 0px 25px;
+}
+
+.header .menu-wrapper .menu li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.header .menu-wrapper .menu li .menu-buy {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 400;
+
+    padding: 10px 10px 10px 10px;
+}
+
+.header .menu-wrapper .menu li .menu-buy:hover {
+    color: #fff !important;
+}
+
+.demo-select {
+    float: left;
+
+    width: 100%;
+}
+
+.demo {
+    position: relative;
+    float: left;
+
+    width: 33%;
+    height: 100vh;
+}
+
+.demo p {
+    font-size: 20px;
+    opacity: 0;
+    transition: all 0.5s ease;
+
+    margin: 30px 0px 0px 0px;
+}
+
+.demo:hover p {
+    opacity: 1;
+}
+
+.demo h2 {
+    font-size: 35px;
+    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+
+    margin: 150px 0px 40px 0px;
+}
+
+.demo h2 span {
+    font-size: 20px;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+}
+
+.demo:nth-child(1) {
+    background: url('../img/demo-1.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    width: 33%;
+}
+
+.demo:nth-child(2) {
+    background: url('../img/demo-2.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    width: 33%;
+}
+
+.demo:nth-child(3) {
+    background: url('../img/demo-3.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    width: 34%;
+}

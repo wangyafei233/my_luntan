@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* CSS Document */
+.nav{
+	border-top:5px solid #000000;/*定义上边框*/
+	border-bottom:1px solid #000000;/*定义下边框*/
+	padding:.45em .5em;/*内边距，上下0.45字高，左右0.5字高，相对于父元素的font-size*/
+}
+.nav a{
+	color:#000000;
+	text-decoration:none;/*默认超链接项带下划线，这里把下划线去掉*/
+}
+.nav a:hover, .nav a:focus{/*设置鼠标放在导航元素上或获得焦点（tab键）时的动作*/
+	background:#D3D3D3;
+	border-top:2px solid #D3D3D3;
+	border-right:10px solid #D3D3D3;
+	border-bottom:2px solid #D3D3D3;
+	border-left:10px solid #D3D3D3;
+	border-radius:5px;/*设置边框圆角*/
+	
+}
+.nav li{
+	display:inline-block;/*行内块元素，不换行又可设置宽高等*/
+	padding:0em 1.15em 0em 1.15em;
+	border-left:1px solid #000000;
+}
+
+.nav li:first-child{/*设置第一个子元素定义样式*/
+	border-left:none;
+}

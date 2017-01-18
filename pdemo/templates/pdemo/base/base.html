@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="
 
+
             {% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}"/>
     <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
     <link rel="stylesheet"
@@ -28,6 +29,7 @@
         <div id="branding">
             <h1 id="site-name"><a href="/">View site</a></h1>
         </div>
+
         <div id="user-tools">
             Welcome,
             <strong>{{ request.user.name }}</strong>.

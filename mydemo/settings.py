@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'pdemo',
     'channels_test',
+    'freedom',
 
 ]
 

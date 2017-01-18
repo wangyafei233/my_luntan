@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* CSS Document */
+
+a.role{
+	position:relative;
+	display:block;
+	width:100px;
+	height:100px;
+	border:2px solid #4b4b4b;
+	border-radius:55px;/*设置圆角*/
+	background:#fff no-repeat center;
+	background-size:cover;/*设置背景图片覆盖背景区域*/
+	top:20px;
+}
+
+.gallery-nav li{
+	display:block;
+	float:left;/*使三个气泡横向显示*/
+	margin-right:100px;/*设置右外边距来控制三个气泡距离*/
+}
+a.role.p1{
+	background-image:url(../images/grey.jpg);/*设置背景图片，下同*/
+}
+a.role.p2{
+	background-image:url(../images/belle.jpg);
+}
+a.role.p3{
+	background-image:url(../images/leo.jpg);
+}
+a.role .role-box{
+	opacity:0;/*设置不透明度为0*/
+	width:8em;/*宽度为10字高，浏览器默认渲染字体大小为16px，所以这里的宽度为8*16px=128px*/
+	padding:.8em;/*同理，这里的内边距为0.8*16px＝12.8px*/
+	background:#111;/*设置背景颜色*/
+	position:absolute;/*设置为绝对布局，相对于设置了position：relative的祖先role计算偏移量*/
+	bottom:-110px;/*底边相对于role的底边向下偏移105px*/
+	left:50%;/*左边相对于role的左边向右偏移50%＊100px＝50px*/
+	margin-left:-4.8em;/*设置左外边距为-(8+0.8*2)/2,即向左偏移－4.8em，使悬浮框相对于气泡居中*/
+	border-radius:15px 0px;/*设置边框圆角，上左下右为15px，上右下左为0px*/
+	transition:all .4s ease-out .3s;/*全部属性在0.4秒后平滑过渡0.3秒*/
+}
+a.role .role-box:before{/*为悬浮框添加小箭头，即一个小三角，before在role-box元素之前添加内容*/
+	content:'';/*设置内容为空*/
+	position:absolute;/*绝对定位，相对于role-box*/
+	bottom:97px;/*相对于role－box的底边向上偏移97px*/
+	left:80px;/*相对于role－box的左边向右偏移80px*/
+	border-bottom:10px solid #111;/*设置下边框为10px，实线，各个边框彼此重叠，所以跟着要设置左右边框为透明*/
+	border-left:10px solid transparent;/*设置左边框实线，透明*/
+	border-right:10px solid transparent;/*设置右边框实线，透明*/
+}
+a.role .role-name{
+	color:#fff;
+}
+a.role .role-desc{
+	margin-bottom:0;
+	font-size:11px;
+	text-align:justify;/*两端对齐*/
+	color:#BCBCBC;
+}
+a.role:hover .role-box, a.role:focus .role-box{
+	opacity:1;
+	bottom:-100px;
+}

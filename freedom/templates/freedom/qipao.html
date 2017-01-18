@@ -1,0 +1,69 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MayStudio - Index</title>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'css/banner.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'css/bubble.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'css/navigation.css' %}"/>
+</head>
+
+<body>
+<!--横幅，网站logo和登录按钮-->
+<a class="login" href="login.html">Log in</a>
+<a class="banner" href="index.html">
+    {#    <img class="banner-logo" src="{% static 'images/maystudio-logo.png' %}" alt="MayStudio"#}
+    <img class="banner-logo" src="/static/images/maystudio-logo.png"
+         alt="MayStudio"
+         width="256" height="80"/>
+    <p class="banner-desc">Starting Small</p>
+</a>
+<!--导航-->
+<ul class="nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="stories.html">Stories</a></li>
+    <li><a href="interludes.html">Interludes</a></li>
+    <li><a href="run.html">RUN!</a></li>
+</ul>
+
+
+<!--气泡悬浮框-->
+<a class="content">
+    <h1>About MayStudio</h1>
+    <p>Hey, I am May and I draw cartoons, make handcrafts and do some coding
+        stuff.</p>
+    <h1>Cast of Cartoons</h1>
+</a>
+<ul class="gallery-nav">
+    <li>
+        <a class="role p1">
+            <div class="role-box">
+                <h4 class="role-name">Grey</h4>
+                <p class="role-desc">A grey and fat bunny.</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a class="role p2">
+            <div class="role-box">
+                <h4 class="role-name">Belle</h4>
+                <p class="role-desc">A bear, Grey's best friend.</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a class="role p3">
+            <div class="role-box">
+                <h4 class="role-name">Leo</h4>
+                <p class="role-desc">Lion, also Grey's friend.</p>
+            </div>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

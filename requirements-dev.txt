@@ -39,6 +39,9 @@ __day 日期字段的日
 __isnull=True/False
 
 
+<img class="banner-logo" src="/static/images/maystudio-logo.png"
+
+
 
 
 
